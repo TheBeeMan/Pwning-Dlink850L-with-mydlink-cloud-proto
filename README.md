@@ -38,8 +38,39 @@
 > 1.固件版本存在差异（DIR850L_REVA_FW114WWb07_h2ab_beta1.bin vs DIR-850L_REVA_FIRMWARE_1.14.B07_WW）
 > 2.UI操作本身就不发送第三个包，而是路由器自身通过其他方式完成了这步操作 
 
+查看注册包和登陆包：
 
+1. 注册包
+```python
+-----------------------------------------------------------------------------------------------------------------------
+POST /register_send.php HTTP/1.1
+Host: 192.168.0.1
+Connection: keep-alive
+Content-Length: 99
+Origin: http://192.168.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Content-Type: application/x-www-form-urlencoded
+Accept: */*
+Referer: http://192.168.0.1/wiz_mydlink.php
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: uid=9w3HkdQTvu
 
+act=signup&lang=zh_CN&outemail=625916714@qq.com&passwd=Dlink_0411_com&firstname=beeman&lastname=the
+
+HTTP/1.1 200 OK
+Server: Linux, HTTP/1.1, DIR-850L Ver 1.14WW
+Date: Tue, 05 Dec 2017 11:10:47 GMT
+Transfer-Encoding: chunked
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<register_send>
+<result>success</result>
+<url>https://mp-cn-portal.auto.mydlink.com</url>
+</register_send>
+-----------------------------------------------------------------------------------------------------------------------
+```
 #### Mydlink 命令行注册：
 
 
