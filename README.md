@@ -24,6 +24,9 @@
 
 #### Mydlink UI注册：
 
+![r1](https://wx3.sinaimg.cn/mw1024/a750c5f9gy1fmd0t3juvsj212x0etdgx.jpg)
+
+
 #### Mydlink 命令行注册：
 
 #### 如何获取web管理员密码：
