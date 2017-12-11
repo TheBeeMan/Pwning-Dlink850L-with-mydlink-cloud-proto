@@ -14,11 +14,11 @@
 
 ## 0x01 漏洞分析
 
-:one: **Firmware**
+:zero: **Firmware**
 
-:two: **xss**
+:one: **xss**
 
-:three: **Retrieving admin password**
+:two: **Retrieving admin password**
 
 **获取web管理员密码漏洞**本质缺陷在于Mydlink云协议在路由器端没有对发送请求的用户身份进行鉴权，导致任意用户可以请求路由器将其注册到远程的Mydlink云端，然后用户通过注册时提供的账号和密码，登陆到Mydlink云端的web管理界面，虽然协议采用https，但对通信双方而言数据是透明的，只是对中间人是加密的数据。这部分https数据中就包含明文的路由器的web管理界面密码。简言之，非管理员的局域网用户通过Mydlink云协议能够获取管理员的账号密码。
 
@@ -36,16 +36,16 @@
 
 :question:
 
-:four: **Weak Cloud protocol**
+:three: **Weak Cloud protocol**
 
-:five: **Backdoor access**
+:four: **Backdoor access**
 
-:six: **Stunnel private keys**
+:five: **Stunnel private keys**
 
-:seven: **Nonce bruteforcing for DNS configuration**
+:six: **Nonce bruteforcing for DNS configuration**
 
-:eight: **Weak files permission and credentials stored in cleartext**
+:seven: **Weak files permission and credentials stored in cleartext**
 
-:nine: **Pre-Auth RCEs as root (L2)**
+:eight: **Pre-Auth RCEs as root (L2)**
 
-:zero: **DoS against some daemons**
+:nine: **DoS against some daemons**
