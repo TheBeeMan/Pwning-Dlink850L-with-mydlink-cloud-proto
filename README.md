@@ -26,6 +26,13 @@
 
 ![r1](https://wx3.sinaimg.cn/mw1024/a750c5f9gy1fmd0t3juvsj212x0etdgx.jpg)
 
+![r2](https://wx2.sinaimg.cn/mw1024/a750c5f9gy1fmd0t5uxkfj21300gcaaw.jpg)
+
+![r3](https://wx3.sinaimg.cn/mw1024/a750c5f9gy1fmd0t9yf2uj212y0h6wff.jpg)
+
+![r4](https://wx2.sinaimg.cn/mw1024/a750c5f9gy1fmd0tviugmj212b0gugml.jpg)
+
+![r5](https://wx2.sinaimg.cn/mw1024/a750c5f9gy1fmd0tzyvu1j214l0gs7di.jpg)
 
 #### Mydlink 命令行注册：
 
