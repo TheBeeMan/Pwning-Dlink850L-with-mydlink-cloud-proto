@@ -208,8 +208,35 @@ curl -v  -H 'Cookie:uid=paYh93tqw4' -d 'act=signup&lang=zh_CN&outemail=625916714
 -----------------------------------------------------------------------------------------------------------------------
 ```
 
-第二个请求 (signin)路由器会将该账户与新创建的用户相关联，但不激活：
+第二个请求 (signin)路由器会将登录Mydlink云端，用于判断注册请求是否申请成功：
 
+```python
+-----------------------------------------------------------------------------------------------------------------------
+curl -v  -H 'Cookie:uid=paYh93tqw4' -d 'act=signin&lang=zh_CN&outemail=625916714@qq.com&passwd=Dlink_0411_com&mydlink_cookie=' http://192.168.100.1/register_send.php
+*   Trying 192.168.100.1...
+* Connected to 192.168.100.1 (192.168.100.1) port 80 (#0)
+> POST /register_send.php HTTP/1.1
+> Host: 192.168.100.1
+> User-Agent: curl/7.47.0
+> Accept: */*
+> Cookie:uid=paYh93tqw4
+> Content-Length: 85
+> Content-Type: application/x-www-form-urlencoded
+> 
+* upload completely sent off: 85 out of 85 bytes
+< HTTP/1.1 200 OK
+< Server: Linux, HTTP/1.1, DIR-850L Ver 1.14WW
+< Date: Mon, 11 Dec 2017 12:12:17 GMT
+< Transfer-Encoding: chunked
+< Content-Type: text/xml
+< 
+<?xml version="1.0"?>
+<register_send>
+	<result>success</result>
+	<url>https://mp-cn-portal.auto.mydlink.com</url>
+</register_send>
+-----------------------------------------------------------------------------------------------------------------------
+```
 
 #### 如何获取web管理员密码：
 
