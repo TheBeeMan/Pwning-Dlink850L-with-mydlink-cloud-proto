@@ -34,7 +34,14 @@
 
 ![r5](https://wx2.sinaimg.cn/mw1024/a750c5f9gy1fmd0tzyvu1j214l0gs7di.jpg)
 
+通过wireshark抓包获取到上述步骤中的管理员进行注册操作的数据流，实际抓到两个包，简单理解为注册包和登陆包，此处与漏洞作者的发现存在出入，作者手动模拟的时候实际发了三个包，除前两个包外，还有一个包是添加设备包。不清楚UI操作时为什么没发送抓个包，而且wiz_mydlink.php页面也不包含act=adddev的脚本代码，可能的两个原因是：
+> 1.固件版本存在差异（DIR850L_REVA_FW114WWb07_h2ab_beta1.bin vs DIR-850L_REVA_FIRMWARE_1.14.B07_WW）
+> 2.UI操作本身就不发送第三个包，而是路由器自身通过其他方式完成了这步操作 
+
+
+
 #### Mydlink 命令行注册：
+
 
 #### 如何获取web管理员密码：
 
