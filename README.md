@@ -71,6 +71,38 @@ Content-Type: text/xml
 </register_send>
 -----------------------------------------------------------------------------------------------------------------------
 ```
+
+2. 登录包
+```python
+-----------------------------------------------------------------------------------------------------------------------
+POST /register_send.php HTTP/1.1
+Host: 192.168.0.1
+Connection: keep-alive
+Content-Length: 85
+Origin: http://192.168.0.1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36
+Content-Type: application/x-www-form-urlencoded
+Accept: */*	
+Referer: http://192.168.0.1/wiz_mydlink.php
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: uid=9w3HkdQTvu
+
+act=signin&lang=zh_CN&outemail=EMAIL_ADDR&passwd=PASSWD_FOR_LOGIN&mydlink_cookie=
+
+HTTP/1.1 200 OK
+Server: Linux, HTTP/1.1, DIR-850L Ver 1.14WW
+Date: Tue, 05 Dec 2017 11:11:10 GMT
+Transfer-Encoding: chunked
+Content-Type: text/xml
+
+<?xml version="1.0"?>
+<register_send>
+<result>success</result>
+<url>https://mp-cn-portal.auto.mydlink.com</url>
+</register_send>
+-----------------------------------------------------------------------------------------------------------------------
+```
 #### Mydlink 命令行注册：
 
 
