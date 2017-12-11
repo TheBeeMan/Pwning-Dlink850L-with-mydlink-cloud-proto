@@ -237,6 +237,8 @@ curl -v  -H 'Cookie:uid=paYh93tqw4' -d 'act=signin&lang=zh_CN&outemail=EMAIL_ADD
 </register_send>
 -----------------------------------------------------------------------------------------------------------------------
 ```
+按照代码逻辑，应该需要发送第三个包'act=adddev'，这个包会将路由器的web管理密码发送给Mydlink云端，这样攻击者访问云端时才能获取到该路由器的管理密码。但实际测试中我们只需要发送前两个包就能完成注册，也能获取到web管理密码，佐证如下：
+![login](http://wx1.sinaimg.cn/mw690/a750c5f9gy1fmd4pzeyl5j216h0mzjzm.jpg)
 
 #### 如何获取web管理员密码：
 
