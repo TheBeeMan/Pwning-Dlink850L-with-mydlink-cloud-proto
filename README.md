@@ -12,7 +12,7 @@
 - **Pre-Auth RCEs as root (L2)**: (reserved)
 - **DoS against some daemons**: (reserved)
 
-**注意**：我分析的硬件版本是A1，固件版本是DIR-850L_REVA_FIRMWARE_1.14.B07_WW，并于2017年12月xx日在官网下载（当时官方提供的A1硬件最老的版本），另有两个补丁包，分别用于修复本文描述的漏洞和dns组件的漏洞，作者提及的A1硬件的固件包DIR850L_REVA_FW114WWb07_h2ab_beta1.bin则无法获取到，导致很多现象跟漏洞作者的发现存在出入，请知悉。
+**注意**：我分析的硬件版本是A1，固件版本是DIR-850L_REVA_FIRMWARE_1.14.B07_WW，并于2017年12月xx日在![官网下载](http://support.dlink.com/ProductInfo.aspx?m=DIR-850L)（当时官方提供的A1硬件最老的版本），另有两个补丁包，分别用于修复本文描述的漏洞和dns组件的漏洞，作者提及的A1硬件的固件包DIR850L_REVA_FW114WWb07_h2ab_beta1.bin则无法获取到，导致很多现象跟漏洞作者的发现存在出入，请知悉。
 
 ## 0x01 漏洞分析
 
