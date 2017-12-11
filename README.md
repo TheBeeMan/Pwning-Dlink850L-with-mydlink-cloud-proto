@@ -182,7 +182,7 @@ else
 
 ```python
 -----------------------------------------------------------------------------------------------------------------------
-curl -v  -H 'Cookie:uid=paYh93tqw4' -d 'act=signup&lang=zh_CN&outemail=625916714@qq.com&passwd=Dlink_0411_com&firstname=beeman&lastname=the' http://192.168.100.1/register_send.php
+curl -v  -H 'Cookie:uid=paYh93tqw4' -d 'act=signup&lang=zh_CN&outemail=EMAIL_ADDR&passwd=PASSWD_FOR_LOGIN&firstname=beeman&lastname=the' http://192.168.100.1/register_send.php
 *   Trying 192.168.100.1...
 * Connected to 192.168.100.1 (192.168.100.1) port 80 (#0)
 > POST /register_send.php HTTP/1.1
@@ -212,7 +212,7 @@ curl -v  -H 'Cookie:uid=paYh93tqw4' -d 'act=signup&lang=zh_CN&outemail=625916714
 
 ```python
 -----------------------------------------------------------------------------------------------------------------------
-curl -v  -H 'Cookie:uid=paYh93tqw4' -d 'act=signin&lang=zh_CN&outemail=625916714@qq.com&passwd=Dlink_0411_com&mydlink_cookie=' http://192.168.100.1/register_send.php
+curl -v  -H 'Cookie:uid=paYh93tqw4' -d 'act=signin&lang=zh_CN&outemail=EMAIL_ADDR&passwd=PASSWD_FOR_LOGIN&mydlink_cookie=' http://192.168.100.1/register_send.php
 *   Trying 192.168.100.1...
 * Connected to 192.168.100.1 (192.168.100.1) port 80 (#0)
 > POST /register_send.php HTTP/1.1
