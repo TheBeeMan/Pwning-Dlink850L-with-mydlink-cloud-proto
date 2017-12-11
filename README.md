@@ -56,7 +56,7 @@ Accept-Encoding: gzip, deflate
 Accept-Language: zh-CN,zh;q=0.9
 Cookie: uid=9w3HkdQTvu
 
-act=signup&lang=zh_CN&outemail=625916714@qq.com&passwd=Dlink_0411_com&firstname=beeman&lastname=the
+act=signup&lang=zh_CN&outemail=EMAIL_ADDR&passwd=PASSWD_FOR_LOGIN&firstname=beeman&lastname=the
 
 HTTP/1.1 200 OK
 Server: Linux, HTTP/1.1, DIR-850L Ver 1.14WW
