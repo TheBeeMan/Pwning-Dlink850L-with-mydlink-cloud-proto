@@ -12,6 +12,8 @@
 - **Pre-Auth RCEs as root (L2)**: (reserved)
 - **DoS against some daemons**: (reserved)
 
+**注意**：我分析的硬件版本是A1，固件版本是DIR-850L_REVA_FIRMWARE_1.14.B07_WW，并于2017年12月xx日在官网下载（当时官方提供的A1硬件最老的版本），另有两个补丁包，分别用于修复本文描述的漏洞和dns组件的漏洞，作者提及的A1硬件的固件包DIR850L_REVA_FW114WWb07_h2ab_beta1.bin则无法获取到，导致很多现象跟漏洞作者的发现存在出入，请知悉。
+
 ## 0x01 漏洞分析
 
 :zero: **Firmware**
@@ -105,6 +107,9 @@ Content-Type: text/xml
 ```
 #### Mydlink 命令行注册：
 
+通过UI操作简单熟悉了Mydlink云协议，现在使用命令行的方式复现这步操作（由于上面的操作已经完成了注册，所以命令行模拟前需登录Mydlink云端将设备和账号注销，该步骤会触发路由器重置操作，等待其完成后再进行模拟，这里不详述直接跳过）。查看register_send.php内容：
+
+首先，进行权限认证（）
 
 #### 如何获取web管理员密码：
 
