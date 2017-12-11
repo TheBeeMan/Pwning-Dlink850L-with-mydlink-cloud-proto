@@ -48,4 +48,4 @@
 
 :nine: **Pre-Auth RCEs as root (L2)**
 
-:ten: **DoS against some daemons**
+:zero: **DoS against some daemons**
