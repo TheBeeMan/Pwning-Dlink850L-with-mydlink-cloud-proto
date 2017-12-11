@@ -109,7 +109,72 @@ Content-Type: text/xml
 
 通过UI操作简单熟悉了Mydlink云协议，现在使用命令行的方式复现这步操作（由于上面的操作已经完成了注册，所以命令行模拟前需登录Mydlink云端将设备和账号注销，该步骤会触发路由器重置操作，等待其完成后再进行模拟，这里不详述直接跳过）。查看register_send.php内容：
 
-首先，进行权限认证（）
+首先，进行权限认证:
+```php
+if ($AUTHORIZED_GROUP < 0)
+{       
+        echo "Authenication fail";
+}
+else
+{
+    //init local parameter
+    $fwver = query("/runtime/device/firmwareversion");
+    $modelname = query("/runtime/device/modelname");
+    $devpasswd = query("/device/account/entry/password");
+    $action = $_POST["act"];
+    $wizard_version = $modelname. "_". $fwver;
+    $result = "success";
+```
+
+然后，获取请求动作，提取POST数据重组后发往Mydlink云端：
+```
+    //sign up
+    $post_str_signup = "client=wizard&wizard_version=" .$wizard_version. "&lang=" .$_POST["lang"].
+                       "&action=sign-up&accept=accept&email=" .$_POST["outemail"]. "&password=" .$_POST["passwd"].
+                       "&password_verify=" .$_POST["passwd"]. "&name_first=" .$_POST["firstname"]. "&name_last=" .$_POST["lastname"]." ";
+
+    $post_url_signup = "/signin/";
+
+    $action_signup = "signup";
+
+    //sign in
+    $post_str_signin = "client=wizard&wizard_version=" .$wizard_version. "&lang=" .$_POST["lang"].
+                "&email=" .$_POST["outemail"]. "&password=" .$_POST["passwd"]." ";
+
+    $post_url_signin = "/account/?signin";
+
+    $action_signin = "signin";
+
+    //add dev (bind device)
+    $post_str_adddev = "client=wizard&wizard_version=" .$wizard_version. "&lang=" .$_POST["lang"].
+                "&dlife_no=" .$mydlink_num. "&device_password=" .$devpasswd. "&dfp=" .$dlinkfootprint." ";
+
+    $post_url_adddev = "/account/?add";
+
+    $action_adddev = "adddev";
+
+    //main start
+    if($action == $action_signup)
+    {
+        $post_str = $post_str_signup;
+        $post_url = $post_url_signup;
+        $withcookie = "";   //signup dont need cookie info
+    }
+    else if($action == $action_signin)
+    {
+        $post_str = $post_str_signin;
+        $post_url = $post_url_signin;
+        $withcookie = "\r\nCookie: lang=en; mydlink=pr2c11jl60i21v9t5go2fvcve2;";
+    }
+    else if($action == $action_adddev)
+    {
+        $post_str = $post_str_adddev;
+        $post_url = $post_url_adddev;
+    }
+    else
+        $result = "fail";
+
+```php
 
 #### 如何获取web管理员密码：
 
