@@ -180,29 +180,33 @@ else
 
 第一个请求 (signup)会在MyDlink服务上创建一个用户:
 
->curl -v  -H 'Cookie:uid=paYh93tqw4' -d >'act=signup&lang=zh_CN&outemail=625916714@qq.com&passwd=Dlink_0411_com&firstname=beeman&lastname=the' >http://192.168.100.1/register_send.php
->*   Trying 192.168.100.1...
->* Connected to 192.168.100.1 (192.168.100.1) port 80 (#0)
->> POST /register_send.php HTTP/1.1
->> Host: 192.168.100.1
->> User-Agent: curl/7.47.0
->> Accept: */*
->> Cookie:uid=paYh93tqw4
->> Content-Length: 99
->> Content-Type: application/x-www-form-urlencoded
->> 
->* upload completely sent off: 99 out of 99 bytes
->< HTTP/1.1 200 OK
->< Server: Linux, HTTP/1.1, DIR-850L Ver 1.14WW
->< Date: Mon, 11 Dec 2017 12:10:12 GMT
->< Transfer-Encoding: chunked
->< Content-Type: text/xml
->< 
-><?xml version="1.0"?>
-><register_send>
->	<result>success</result>
->	<url>https://mp-cn-portal.auto.mydlink.com</url>
-></register_send>
+```python
+-----------------------------------------------------------------------------------------------------------------------
+curl -v  -H 'Cookie:uid=paYh93tqw4' -d 'act=signup&lang=zh_CN&outemail=625916714@qq.com&passwd=Dlink_0411_com&firstname=beeman&lastname=the' http://192.168.100.1/register_send.php
+*   Trying 192.168.100.1...
+* Connected to 192.168.100.1 (192.168.100.1) port 80 (#0)
+> POST /register_send.php HTTP/1.1
+> Host: 192.168.100.1
+> User-Agent: curl/7.47.0
+> Accept: */*
+> Cookie:uid=paYh93tqw4
+> Content-Length: 99
+> Content-Type: application/x-www-form-urlencoded
+> 
+* upload completely sent off: 99 out of 99 bytes
+< HTTP/1.1 200 OK
+< Server: Linux, HTTP/1.1, DIR-850L Ver 1.14WW
+< Date: Mon, 11 Dec 2017 12:10:12 GMT
+< Transfer-Encoding: chunked
+< Content-Type: text/xml
+< 
+<?xml version="1.0"?>
+<register_send>
+	<result>success</result>
+	<url>https://mp-cn-portal.auto.mydlink.com</url>
+</register_send>
+-----------------------------------------------------------------------------------------------------------------------
+```
 
 第二个请求 (signin)路由器会将该账户与新创建的用户相关联，但不激活：
 
