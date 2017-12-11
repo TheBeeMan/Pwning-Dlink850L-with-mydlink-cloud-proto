@@ -126,8 +126,8 @@ else
     $result = "success";
 ```
 
-然后，获取请求动作，提取POST数据重组后发往Mydlink云端：
-```
+然后，获取请求动作，提取用户提交的POST数据重组后发往Mydlink云端：
+```php
     //sign up
     $post_str_signup = "client=wizard&wizard_version=" .$wizard_version. "&lang=" .$_POST["lang"].
                        "&action=sign-up&accept=accept&email=" .$_POST["outemail"]. "&password=" .$_POST["passwd"].
@@ -173,8 +173,39 @@ else
     }
     else
         $result = "fail";
+```
+最后，手动模拟发包，注意两点：
+>1. 我测试的固件版本对云协议操作存在权限校验，所以需要提供一个合法的cookie。
+>2. 由于上面UI操作时发送两个数据包就能完成该工作，所以我也决定只发两个包进行尝试。
 
-```php
+第一个请求 (signup)会在MyDlink服务上创建一个用户:
+
+>curl -v  -H 'Cookie:uid=paYh93tqw4' -d >'act=signup&lang=zh_CN&outemail=625916714@qq.com&passwd=Dlink_0411_com&firstname=beeman&lastname=the' >http://192.168.100.1/register_send.php
+>*   Trying 192.168.100.1...
+>* Connected to 192.168.100.1 (192.168.100.1) port 80 (#0)
+>> POST /register_send.php HTTP/1.1
+>> Host: 192.168.100.1
+>> User-Agent: curl/7.47.0
+>> Accept: */*
+>> Cookie:uid=paYh93tqw4
+>> Content-Length: 99
+>> Content-Type: application/x-www-form-urlencoded
+>> 
+>* upload completely sent off: 99 out of 99 bytes
+>< HTTP/1.1 200 OK
+>< Server: Linux, HTTP/1.1, DIR-850L Ver 1.14WW
+>< Date: Mon, 11 Dec 2017 12:10:12 GMT
+>< Transfer-Encoding: chunked
+>< Content-Type: text/xml
+>< 
+><?xml version="1.0"?>
+><register_send>
+>	<result>success</result>
+>	<url>https://mp-cn-portal.auto.mydlink.com</url>
+></register_send>
+
+第二个请求 (signin)路由器会将该账户与新创建的用户相关联，但不激活：
+
 
 #### 如何获取web管理员密码：
 
