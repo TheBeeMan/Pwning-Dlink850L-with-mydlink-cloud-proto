@@ -20,6 +20,20 @@
 
 :one: **xss**
 
+**xss漏洞** 本质缺陷在于路由器的后端未对用户的特定请求进行检查和过滤，直接将用户请求中的部分数据原原本本的回传给了用户，导致浏览器执行了里面的js脚本。作者发现了四处xss漏洞：
+1. vim ./web/wpsacts.php
+```php
+<?echo '<?xml version="1.0" encoding="utf-8"?>';?>
+<wpsreport>
+        <action><?echo $_POST["action"];?></action>
+        <result><?=$RESULT?></result>
+        <reason><?=$REASON?></reason>
+</wpsreport>
+```
+同样的问题也存在于/htdocs/web/wandetect.php，/htdocs/web/shareport.php，/htdocs/web/sitesurvey.php这三个文件中。
+
+其实，还存在其他的xss漏洞，后续我会公布出来。
+
 :two: **Retrieving admin password**
 
 **获取web管理员密码漏洞** 本质缺陷在于Mydlink云协议在路由器端没有对发送请求的用户身份进行鉴权，导致任意用户可以请求路由器将其注册到远程的Mydlink云端，然后用户通过注册时提供的账号和密码，登陆到Mydlink云端的web管理界面，虽然协议采用https，但对通信双方而言数据是透明的，只是对中间人是加密的数据。这部分https数据中就包含明文的路由器的web管理界面密码。简言之，非管理员的局域网用户通过Mydlink云协议能够获取管理员的账号密码。
