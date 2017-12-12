@@ -2,7 +2,7 @@
 
 2017年9月8号，Pierre Kim在其github博客上公布了D-Link 850L的私有协议MyDlink Cloud protocol存在的安全漏洞和相关技术细节，准确统计有10个漏洞，如下（这部分直接引用网上翻译的数据，比我总结得更全面）：
 - **Firmware**: (reserved)
-- **xss**: (reserved)
+- **xss**: XSS攻击来获取已认证用户的认证cookie。
 - **Retrieving admin password**: 攻击者可以获取admin的口令，利用MyDlink云协议添加攻击者帐号到路由器，获取路由器的控制权；
 - **Weak Cloud protocol**: (reserved)
 - **Backdoor access**: (reserved)
