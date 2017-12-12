@@ -241,15 +241,28 @@ curl -v  -H 'Cookie:uid=paYh93tqw4' -d 'act=signin&lang=zh_CN&outemail=EMAIL_ADD
 
 ![login](http://wx1.sinaimg.cn/mw690/a750c5f9gy1fmd4pzeyl5j216h0mzjzm.jpg)
 
-#### 如何获取web管理员密码：
-
 #### 总结与思考
 
-:question:
+:question:如何抓取路由器发往Mydlink云端的数据包？
 
-:question:
+首选当然是登录到路由器上直接抓取WAN口网卡，但测试版本固件未直接启动登录服务，只能通过利用![路由器的其他漏洞](https://github.com/TheBeeMan/DLink-850L-Multiple-Vulnerabilities-Analysis)迫使其开放telnet服务，但此种利用方式并不稳定，我测试时仍然无法登录到目标路由器上。
 
-:question:
+其次，搭建二建路由环境，在路由器的上级网关处抓包，获取路由器发往Mydlink云端的http/https协议数据，在实际抓包时我设置了dns+http+https的过滤器用于获取三种协议的流量，结果未发现解析Mydlink域名的数据，故我认为流程捕获失败，这部分流程是否以not dns+https的形式存在？
+
+再者，镜像dump，在目标路由器和其上级网关之间复制流量镜像，通过laptap这种小设备就能做到，很可惜同样未捕获到。
+
+最后，这个实验还需要重新操作N次，目的是实现Mydlink协议的流量捕获。
+
+:question:为什么缺少交互缺少'act=adddev'数据包仍然可以获取管理密码？
+
+按照代码逻辑，应该需要发送第三个包'act=adddev'，这个包会将路由器的web管理密码发送给Mydlink云端，这样攻击者访问云端时才能获取到该路由器的管理密码。
+实际测试缺少这个数据包仍然利用成功，说明路由器通过其他方式发送出了自己的管理密码到云端，可能是某种隐式的方式。要论证，必须捕获完整的通信流量，又回到上个问题了。
+
+:question:漏洞的本质是什么？
+
+其实，上面两个问题都只是操作层名的问题，跟漏洞本质缺陷无关。按照漏洞作者之意，导致漏洞产生的核心是register_send.php未对请求用户的身份进行鉴权，理应管理员才能请求成功，普通局域网用户请求会失败，如果没有身份校验确实会导致普通用户也能获取管理密码的后果。
+
+只是实际测试中已无法论证作者的观点，存在漏洞的固件版本已经不复存在，我们验证的版本有身份验证，不存在漏洞。
 
 :three: **Weak Cloud protocol**
 
