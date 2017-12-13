@@ -472,8 +472,9 @@ UxqbgO5QFqY2OjzwOSfkjXAgA3N/JmWsqwWxhO58FkPKL7VrRPx1oceGBBi037J2
 docNTCb2VoTiVpigbK1xISOkpju5jicTwq5wD2rGvriImgrXADk6kH5fTSKITqaK
 L0K03Bik6/rxBA6n4v9drM1hKAF+0wET
 -----END CERTIFICATE-----
-thebeeman@thebeeman-virtual-machine:~/ztest/firmware/r
 ```
+但我认为这两个文件并非stunnel服务运行时真正使用的证书，它们只是在发版时未被清理的临时文件，可以通过浏览器去访问https服务，查看证书内容：
+![acccess_stunnel_server](http://wx1.sinaimg.cn/mw690/a750c5f9gy1fmfesfij7aj20ll0n2t9t.jpg)
 
 :six: **Nonce bruteforcing for DNS configuration**
 
