@@ -476,6 +476,8 @@ L0K03Bik6/rxBA6n4v9drM1hKAF+0wET
 但我认为这两个文件并非stunnel服务运行时真正使用的证书，它们只是在发版时未被清理的临时文件，可以通过浏览器去访问https服务，查看证书内容：
 ![acccess_stunnel_server](http://wx1.sinaimg.cn/mw690/a750c5f9gy1fmfesfij7aj20ll0n2t9t.jpg)
 
+不难发现两个证书并非同一个文件，其序列号、有效期、签发者信息都完全对不上，所以我认为作者描述的这个漏洞不存在。
+
 :six: **Nonce bruteforcing for DNS configuration**
 
 :seven: **Weak files permission and credentials stored in cleartext**
