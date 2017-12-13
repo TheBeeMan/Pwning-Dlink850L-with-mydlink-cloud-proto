@@ -310,7 +310,7 @@ fi
 
 mfcd其实就是telnetd，如果特定条件成立，“mfcd -l /usr/sbin/login -u Alphanetworks:$image_sign -i br0 &”命令将被运行，其中Alphanetworks是账户，$image_sign是密码。作者经过测试，能够成功登录路由器，拿到shell。
 
-但我的硬件版本是A1，虽然同样存在/etc/init0.d/S80telnetd.sh脚本，重置设备未被执行，先查看S80telnetd.sh的内容：
+但我的硬件版本是A1，虽然同样存在/etc/init0.d/S80telnetd.sh脚本，重置设备后未被执行，先查看S80telnetd.sh的内容：
 ```sh
 #!/bin/sh
 orig_devconfsize=`xmldbc -g /runtime/device/devconfsize`
