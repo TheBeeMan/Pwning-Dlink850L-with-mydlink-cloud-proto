@@ -280,7 +280,70 @@ curl -v  -H 'Cookie:uid=paYh93tqw4' -d 'act=signin&lang=zh_CN&outemail=EMAIL_ADD
 
 :three: **Weak Cloud protocol**
 
+(reserved)
+
 :four: **Backdoor access**
+
+**后门程序** 本质缺陷在于特定场景下，路由器会启动telnetd登录服务，其账号密码是硬编码在固件中的，通过逆向手段能够获取到。作者声称“在revB镜像中，如果重置设备，/etc/init0.d/S80mfcd.sh脚本会被执行”，先查看S80mfcd.sh的内容：
+```sh
+#!/bin/sh
+echo [$0]: $1 ... > /dev/console
+orig_devconfsize=`xmldbc -g /runtime/device/devconfsize` 
+entn=`devdata get -e ALWAYS_TN`
+if [ "$1" = "start" ] && [ "$entn" = "1" ]; then
+        mfcd -i br0 -t 99999999999999999999999999999 &
+        exit
+fi
+
+if [ "$1" = "start" ] && [ "$orig_devconfsize" = "0" ]; then
+
+        if [ -f "/usr/sbin/login" ]; then
+                image_sign=`cat /etc/config/image_sign`
+                mfcd -l /usr/sbin/login -u Alphanetworks:$image_sign -i br0 &
+        else
+                mfcd &
+        fi 
+else
+        killall mfcd
+fi
+```
+
+mfcd其实就是telnetd，如果特定条件成立，“mfcd -l /usr/sbin/login -u Alphanetworks:$image_sign -i br0 &”命令将被运行，其中Alphanetworks是账户，$image_sign是密码。作者经过测试，能够成功登录路由器，拿到shell。
+
+但我的硬件版本是A1，虽然同样存在/etc/init0.d/S80telnetd.sh脚本，重置设备未被执行，先查看S80telnetd.sh的内容：
+```sh
+#!/bin/sh
+orig_devconfsize=`xmldbc -g /runtime/device/devconfsize`
+echo [$0]: $1 ... > /dev/console
+if [ "$1" = "start" ] && [ "$orig_devconfsize" = "0" ]; then
+	if [ -f "/usr/sbin/login" ]; then
+		image_sign=`cat /etc/config/image_sign`
+		telnetd -l /usr/sbin/login -u Alphanetworks:$image_sign -i br0 &
+	else
+		telnetd &
+	fi
+else
+	killall telnetd
+fi
+```
+经分析发现未启动的原因是$orig_devconfsize的值不为0。
+```sh
+curl -H 'Cookie:uid=DNApHZrhDl' -d 'SERVICES=RUNTIME.DEVICE' http://192.168.100.1/getcfg.php
+
+<?xml version="1.0" encoding="utf-8"?>
+<postxml>
+<module>
+	<service>RUNTIME.DEVICE</service>
+	<runtime>
+		<device>
+			<fptime>1000</fptime>
+			<bootuptime>70</bootuptime>
+			[...]
+			<devconfsize>4781</devconfsize>
+			[...]
+```
+
+尽管如此，该漏洞仍有存在的可能性，只是无法确定脚本中的判断条件是在何种情况下成立而已。
 
 :five: **Stunnel private keys**
 
