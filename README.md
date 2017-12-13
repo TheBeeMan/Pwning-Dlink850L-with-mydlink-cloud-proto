@@ -261,7 +261,7 @@ curl -v  -H 'Cookie:uid=paYh93tqw4' -d 'act=signin&lang=zh_CN&outemail=EMAIL_ADD
 
 首选当然是登录到路由器上直接抓取WAN口网卡，但测试版本固件未直接启动登录服务，只能通过利用![路由器的其他漏洞](https://github.com/TheBeeMan/DLink-850L-Multiple-Vulnerabilities-Analysis)迫使其开放telnet服务，但此种利用方式并不稳定，我测试时仍然无法登录到目标路由器上。
 
-其次，搭建二建路由环境，在路由器的上级网关处抓包，获取路由器发往Mydlink云端的http/https协议数据，在实际抓包时我设置了dns+http+https的过滤器用于获取三种协议的流量，结果未发现解析Mydlink域名的数据，故我认为流量捕获失败，这部分流量是否以not dns+https的形式存在？
+其次，搭建二建路由环境，在路由器的上级网关处抓包，获取路由器发往Mydlink云端的http/https协议数据，在实际抓包时我设置了dns+http+https的过滤器用于获取三种协议的流量，结果发现存在解析Mydlink域名的数据，但是未抓到https数据包，故我认为抓包失败。
 
 再者，镜像dump，在目标路由器和其上级网关之间复制流量镜像，通过laptap这种小设备就能做到，很可惜同样未捕获到。
 
