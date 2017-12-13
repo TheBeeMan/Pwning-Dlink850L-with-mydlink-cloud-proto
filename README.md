@@ -5,8 +5,8 @@
 - **xss**: XSS攻击来获取已认证用户的认证cookie。
 - **Retrieving admin password**: 攻击者可以获取admin的口令，利用MyDlink云协议添加攻击者帐号到路由器，获取路由器的控制权；
 - **Weak Cloud protocol**: (reserved)
-- **Backdoor access**: (reserved)
-- **Stunnel private keys**: (reserved)
+- **Backdoor access**: 存在后门，攻击者可以获取root权限；
+- **Stunnel private keys**: 加密私钥硬编码在固件中，攻击者提取后可以执行中间人攻击；
 - **Nonce bruteforcing for DNS configuration**: (reserved)
 - **Weak files permission and credentials stored in cleartext**: (reserved)
 - **Pre-Auth RCEs as root (L2)**: (reserved)
