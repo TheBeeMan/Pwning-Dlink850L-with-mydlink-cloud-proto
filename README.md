@@ -480,6 +480,20 @@ L0K03Bik6/rxBA6n4v9drM1hKAF+0wET
 
 :six: **Nonce bruteforcing for DNS configuration**
 
+**Nonce值可爆破** 根本缺乏在于“htdocs/parentalcontrols/bind.php 文件可以更改DNS配置信息，并不检查管理用户的认证状态。因为对HTTP请求没有限制和认证，攻击者可以采取暴力方式破解nonce，查看bind.php内容：
+```php
+ 9 if(query(INF_getinfpath($WAN1)."/open_dns/nonce")!=$_GET["nonce"] || $_GET["nonce"]=="")
+ 10 {
+ 11         $Response="BindError";
+ 12 }
+ [...]
+ 21         set(INF_getinfpath($WAN1)."/open_dns/deviceid", $_GET["deviceid"]);
+ 22         set(INF_getinfpath($WAN1)."/open_dns/parent_dns_srv/dns1", $_GET["dnsip1"]);
+ 23         set(INF_getinfpath($WAN1)."/open_dns/parent_dns_srv/dns2", $_GET["dnsip2"]);
+[...]
+```
+"攻击者可以暴力猜测nonce的值，绕过验证，然后更改路由器的dns服务器为自己控制的主机"（引述作者观点），诚然如此。
+
 :seven: **Weak files permission and credentials stored in cleartext**
 
 :eight: **Pre-Auth RCEs as root (L2)**
