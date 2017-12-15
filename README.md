@@ -7,7 +7,7 @@
 - **Weak Cloud protocol**: (reserved)
 - **Backdoor access**: 存在后门，攻击者可以获取root权限；
 - **Stunnel private keys**: 加密私钥硬编码在固件中，攻击者提取后可以执行中间人攻击；
-- **Nonce bruteforcing for DNS configuration**: (reserved)
+- **Nonce bruteforcing for DNS configuration**: 攻击者可以通过非认证的HTTP请求，转发流量等方式改变路由器的DNS配置；
 - **Weak files permission and credentials stored in cleartext**: (reserved)
 - **Pre-Auth RCEs as root (L2)**: (reserved)
 - **DoS against some daemons**: (reserved)
