@@ -496,6 +496,14 @@ L0K03Bik6/rxBA6n4v9drM1hKAF+0wET
 
 :seven: **Weak files permission and credentials stored in cleartext**
 
+(reserved)
+
 :eight: **Pre-Auth RCEs as root (L2)**
+
+这个问题分割成两个漏洞，还未研究清楚。
+
+1. 第一个漏洞：目前的理解是假如攻击者是路由器的DHCP服务器控制者，路由器发来DHCP request之后，攻击者回复DHCP response数据中包含恶意命令的domain-name参数（注入点），导致路由器执行这部分恶意命令。
+
+2. 第二个漏洞：目前的理解是/etc/services/INET/inet_ipv4.php这个文件中的"DOMAIN=$domain"这句话能被注入，假如攻击者是路由器的的DHCP服务器，由器发来DHCP request之后，攻击者回复DHCP response数据中包含domain参数（注入点），导致路由器执行/etc/services/INET/inet_ipv4.php脚本时将domain参数写入到"/var/servd/".$inf."-udhcpc.sh"文件中，总之 /var/servd/目录下的某些文件被恶意篡改了。
 
 :nine: **DoS against some daemons**
