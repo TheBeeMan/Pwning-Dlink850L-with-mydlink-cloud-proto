@@ -9,7 +9,7 @@
 - **Stunnel private keys**: 加密私钥硬编码在固件中，攻击者提取后可以执行中间人攻击；
 - **Nonce bruteforcing for DNS configuration**: 攻击者可以通过非认证的HTTP请求，转发流量等方式改变路由器的DNS配置；
 - **Weak files permission and credentials stored in cleartext**: (reserved)
-- **Pre-Auth RCEs as root (L2)**: (reserved)
+- **Pre-Auth RCEs as root (L2)**: DHCP客户端存在被命令注入的可能，攻击者可以用来获取设备的root权限；
 - **DoS against some daemons**: (reserved)
 
 **注意**：我分析的硬件版本是A1，固件版本是DIR-850L_REVA_FIRMWARE_1.14.B07_WW，并于2017年12月xx日在![官网下载](http://support.dlink.com/ProductInfo.aspx?m=DIR-850L)（当时官方提供的A1硬件最老的版本），另有两个补丁包，分别用于修复本文描述的漏洞和dns组件的漏洞，作者提及的A1硬件的固件包DIR850L_REVA_FW114WWb07_h2ab_beta1.bin则无法获取到，导致很多现象跟漏洞作者的发现存在出入，请知悉。
